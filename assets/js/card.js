@@ -403,11 +403,13 @@ function readControls() {
     data.av = document.getElementById("av").value;
     data.p_general = document.getElementById("p_general").checked;
     data.p_agility = document.getElementById("p_agility").checked;
+    data.p_devious = document.getElementById("p_devious").checked;
     data.p_strength = document.getElementById("p_strength").checked;
     data.p_passing = document.getElementById("p_passing").checked;
     data.p_mutations = document.getElementById("p_mutations").checked;
     data.s_general = document.getElementById("s_general").checked;
     data.s_agility = document.getElementById("s_agility").checked;
+    data.s_devious = document.getElementById("s_devious").checked;
     data.s_strength = document.getElementById("s_strength").checked;
     data.s_passing = document.getElementById("s_passing").checked;
     data.s_mutations = document.getElementById("s_mutations").checked;
@@ -453,6 +455,12 @@ function drawCardFrame(fighterData){
         if(fighterData.p_agility){
             primary = primary + "Agility";
         }
+        if(primary!="" && fighterData.p_devious){
+            primary = primary + ", ";
+        }
+        if(fighterData.p_devious){
+            primary = primary + "Devious";
+        }
         if(primary!="" && fighterData.p_general){
             primary = primary + ", ";
         }
@@ -481,6 +489,12 @@ function drawCardFrame(fighterData){
         secondary = "";
         if(fighterData.s_agility){
             secondary = secondary + "Agility";
+        }
+        if(secondary!="" && fighterData.s_devious){
+            secondary = secondary + ", ";
+        }
+        if(fighterData.s_devious){
+            secondary = secondary + "Devious";
         }
         if(secondary!="" && fighterData.s_general){
             secondary = secondary + ", ";
@@ -607,12 +621,14 @@ async function writeControls(fighterData) {
     $("#cardText")[0].value = fighterData.cardText;
 
     document.getElementById('p_agility').checked = fighterData.p_agility;
+    document.getElementById('p_devious').checked = fighterData.p_devious;
     document.getElementById('p_general').checked = fighterData.p_general;
     document.getElementById('p_mutations').checked = fighterData.p_mutations;
     document.getElementById('p_passing').checked = fighterData.p_passing;
     document.getElementById('p_strength').checked = fighterData.p_strength;
 
     document.getElementById('s_agility').checked = fighterData.s_agility;
+    document.getElementById('s_devious').checked = fighterData.s_devious;
     document.getElementById('s_general').checked = fighterData.s_general;
     document.getElementById('s_mutations').checked = fighterData.s_mutations;
     document.getElementById('s_passing').checked = fighterData.s_passing;
@@ -649,11 +665,13 @@ function defaultFighterData() {
     fighterData.imageUrl = null;
     fighterData.imageProperties = getDefaultModelImageProperties();
     fighterData.p_agility = false;
+    fighterData.p_devious = false;
     fighterData.p_general = false;
     fighterData.p_passing = false;
     fighterData.p_mutations = false;
     fighterData.p_strength = false;
     fighterData.s_agility = false;
+    fighterData.s_devious = false;
     fighterData.s_general = false;
     fighterData.s_passing = false;
     fighterData.s_mutations = false;
