@@ -76,7 +76,3 @@ Form Input → readControls() → data object → render() → Canvas
 - Team logos (570+): `assets/img/logos/`
 - Custom fonts (defined via @font-face in `assets/css/main.css`): brothers-regular, franklin-gothic-book, built-titling, bank-gothic, frutiger-light, indie-flower
 - Vendor libs: `assets/vendors/`
-
-## Additional Context
-
-The `memory-bank/` directory contains detailed AI context documents (project brief, tech context, system patterns, active context, progress) that provide deeper implementation details beyond this summary.
