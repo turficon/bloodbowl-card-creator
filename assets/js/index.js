@@ -23,7 +23,6 @@ loadCardDataMap = function(dataRef) {
     var storage = window.localStorage.getItem(dataRef);
     if (storage != null) {
         console.log('load '+dataRef+' data from storage');
-        
         return JSON.parse(storage);
     }
     // Set up the map.
@@ -74,12 +73,12 @@ loadCardData = function(dataRef) {
 }
 
 
-function onResetToDefault() {
+onResetToDefault = function() {
     var cardData = defaultCardData();
     writeControls(cardData);
 }
 
-function refreshSaveSlots() {
+refreshSaveSlots = function() {
     // Remove all
     $('select').not("#languageSwitcher").children('option').remove();
 
@@ -144,12 +143,12 @@ getSelectedRunemark = function(radioDiv) {
     return null;
 }
 
-function getName() {
+getName = function() {
     //var textInput = $("#saveNameInput")[0];
     return "BloodBowl_Card";
 }
 
-function setName(name) {
+setName = function (name) {
     //var textInput = $("#saveNameInput")[0];
     //textInput.value = name;
 }

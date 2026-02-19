@@ -1,7 +1,5 @@
 const dataRef = "playerCard";
 
-
-
 function defaultCardData() {
     var cardData = new Object;
     cardData.name = "BloodBowl_Card";
@@ -623,100 +621,6 @@ async function writeControls(cardData) {
 
     // render the updated info
     render(cardData);
-}
-
-
-/*
-function savecardDataMap(newMap) {
-    window.localStorage.setItem("cardDataMap", JSON.stringify(newMap));
-}
-
-function loadcardDataMap() {
-    var storage = window.localStorage.getItem("cardDataMap");
-    if (storage != null) {
-        return JSON.parse(storage);
-    }
-    // Set up the map.
-    var map = new Object;
-    map["BloodBowl_Card"] = defaultcardData();
-    savecardDataMap(map);
-    return map;
-}
-
-function loadLatestcardData() {
-    var latestCardName = window.localStorage.getItem("latestCardName");
-    if (latestCardName == null) {
-        latestCardName = "BloodBowl_Card";
-    }
-
-    //console.log("Loading '" + latestCardName + "'...");
-
-    var data = loadcardData(latestCardName);
-
-    if (data) {
-        //console.log("Loaded data:");
-        //console.log(data);
-    }
-    else {
-        console.log("Failed to load data, loading defaults.");
-        data = defaultcardData();
-    }
-
-    return data;
-}
-
-function saveLatestcardData() {
-    var cardData = readControls();
-    if (!cardData.name) {
-        return;
-    }
-
-    window.localStorage.setItem("latestCardName", cardData.name);
-    //savecardData(cardData);
-}
-
-function loadcardData(cardDataName) {
-    if (!cardDataName) {
-        return null;
-    }
-
-    var map = loadcardDataMap();
-    if (map[cardDataName]) {
-        return map[cardDataName];
-    }
-
-    return null;
-}
-
-async function savecardData(cardData) {
-    var finishSaving = function () {
-        var map = loadcardDataMap();
-        map[cardData.name] = cardData;
-        window.localStorage.setItem("cardDataMap", JSON.stringify(map));
-    };
-
-    if (cardData != null &&
-        cardData.name) {
-        // handle images we may have loaded from disk...
-        cardData.imageUrl = await handleImageUrlFromDisk(cardData.imageUrl);
-
-        finishSaving();
-    }
-}
-
-function getLatestcardDataName() {
-    return "latestcardData";
-}
-*/
-
-
-
-onWeaponRunemarkFileSelect = function (input, weaponName) {
-    var grid = $(input.parentNode).find("#weaponRunemarkSelect")[0];
-
-    for (i = 0; i < input.files.length; i++) {
-        addToImageRadioSelector(URL.createObjectURL(input.files[i]), grid, weaponName, "white");
-    }
 }
 
 async function onSaveClicked() {
