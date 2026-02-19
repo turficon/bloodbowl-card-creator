@@ -1,0 +1,65 @@
+{
+    "head": {
+        "title": "Blood Bowl Créateur de cartes",
+        "description": "Une application pour créer des cartes du jeu de plateau Blood Bowl, personnalisées et prêtes à imprimer."
+    },
+    "card":{
+        "action":{
+            "remove_border":"Supprimer les bords pour ajouter une marge d'impression",
+            "save_as_image":"Sauvegarder comme image",
+            "save_as_file":"Sauvegarder comme fichier",
+            "load":"Charger une carte",
+            "reset_all":"effacer"
+        },
+        "caracteristics":{
+            "player_stats" : "Statistiques du Joueur",
+            "player_name" : "Nom du joueur",
+            "team_name" : "Nom de l'equipe",
+            "player_type" : "Type de joueur",
+            "roster_player" : "joueur standard",
+            "star_player" : "Star Player",
+            "MA" : "M",
+            "S" : "F",
+            "AG" : "AG",
+            "PA" : "CP",
+            "AV" : "AR",
+            "GP" : "PO",
+            "skills_traits" : "Compétences & traits",
+            "plays_for" : "Joue pour",
+            "special_rules" : "Rêgles spéciales",
+            "player_development" : "Developpement du joueur",
+            "keywords" : "Mots-clefs",
+            "position" : "Position",
+            "primary_skills" : "Compétences primaires",
+            "secondary_skills" : "Compétences secondaires",
+            "agility_box" : "A",
+            "devious_box" : "S",
+            "general_box" : "G",
+            "mutations_box" : "M",
+            "passing_box" :"P",
+            "strength_box" : "F",
+            "agility" : "Agilité",
+            "devious" : "Scélérates",
+            "general" : "Générales",
+            "mutations" : "Mutation",
+            "passing" :"Passe",
+            "strength" : "Force",
+            "primary": "Primaire",
+            "secondary" : "Secondaire",
+            "body_text" : "Texte de la carte"
+        },
+        "deployement":{
+
+        },
+        "image":{
+            "player_image": "Image du joueur",
+            "load_image" : "Charger Image",
+            "x_offset" : "X offset (↔)",
+            "y_offset" : "Y offset (↕)",
+            "scale_percent": "Echelle (%)"
+        }
+    },
+    "plays":{
+
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "head": {
+        "title": "Blood Bowl Créateur de cartes",
+        "description": "A client-side web app for creating custom, print-ready Blood Bowl tabletop game cards."
+    },
+    "card":{
+        "action":{
+            "remove_border":"Remove border to add bleed area for printing",
+            "save_as_image":"Save as image",
+            "save_as_file":"Save as file",
+            "load":"Load card file",
+            "reset_all":"Reset all"
+        },
+        "caracteristics":{
+            "player_stats" : "Player Stats",
+            "player_name" : "Player name",
+            "team_name" : "Team name",
+            "player_type" : "Player Type",
+            "roster_player" : "Roster Player",
+            "star_player" : "Star Player",
+            "MA" : "MA",
+            "S" : "S",
+            "AG" : "AG",
+            "PA" : "PA",
+            "AV" : "AV",
+            "GP" : "GP",
+            "skills_traits" : "Skills & traits",
+            "plays_for" : "Plays For",
+            "special_rules" : "Special rules",
+            "player_development" : "Player developement",
+            "keywords" : "Keywords",
+            "position" : "Position",
+            "primary_skills" : "Primary Skills",
+            "secondary_skills" : "Secondary Skills",
+            "agility_box" : "A",
+            "devious_box" : "D",
+            "general_box" : "G",
+            "mutations_box" : "M",
+            "passing_box" :"P",
+            "strength_box" : "S",
+            "agility" : "Agility",
+            "devious" : "Devious",
+            "general" : "General",
+            "mutations" : "Mutations",
+            "passing" :"Passing",
+            "strength" : "Strength",
+            "primary": "Primary",
+            "secondary" : "Secondary",
+            "body_text" : "Body text"
+        },
+        "deployement":{
+
+        },
+        "image":{
+            "player_image": "Player Image",
+            "load_image" : "Load Image",
+            "x_offset" : "X offset (↔)",
+            "y_offset" : "Y offset (↕)",
+            "scale_percent": "Scale (%)"
+        }
+    },
+    "plays":{
+
+    }
+}

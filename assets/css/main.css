@@ -203,7 +203,7 @@ canvas {
 }
 
 .scroll-area-fade {
-    max-height: 666px;
+    max-height: 700px;
     position: relative;
 }
 
@@ -244,6 +244,31 @@ canvas {
 *[id^='tagRunemarkSelect_'] label,
 #weaponInputs label {
     margin: 0;
+}
+
+#keywords {
+  white-space: pre-line;
+}
+
+
+.btn-success {
+    color: #fff;
+    background-color: #203c77;
+    border-color: #203c77;
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #203c77;
+    border-color: #6d90dd;
+}
+.btn-link {
+    font-weight: 400;
+    color: #fff;
+}
+.btn-link:hover {
+    font-weight: 400;
+    font-weight: bold;
+    color: #fff;
 }
 
 /* .flex-wrap > div {
