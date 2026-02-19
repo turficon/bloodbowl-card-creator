@@ -687,7 +687,7 @@ function onResetToDefault() {
 
 function refreshSaveSlots() {
     // Remove all
-    $('select').children('option').remove();
+    $('select').not("#languageSwitcher").children('option').remove();
 
     var fighterDataName = readControls().name;
 

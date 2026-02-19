@@ -45,10 +45,19 @@ function printAtWordWrap(context, text, x, y, lineHeight, fitWidth) {
 
 }
 
-function drawCardText(value, yStart, maxLinesForNormalFont) {
+function drawCardText(value, yStart, maxLinesForNormalFont, keywords=false) {
     let context = getContext();
-    context.textAlign = "left";
-    context.textBaseline = "middle";
+    if(keywords == true){
+        context.font = 'italic 22px brothers-regular';
+        context.fillStyle = '#203c77';
+        context.textAlign = "left";
+        context.textBaseline = "middle";
+    }
+    else{
+        context.textAlign = "left";
+        context.textBaseline = "middle";
+    }
+    
     let maxCharactersForThreeLines = 140;
     let minFontSize = 24;
 
@@ -56,14 +65,14 @@ function drawCardText(value, yStart, maxLinesForNormalFont) {
     //let yStart = (playerType === "star") ? 680 : 730;
     let xStart = 265;
 
-    let fontSize = 36;
-    let lineHeight = 42;
-    let fitWidth = 400; // Reduced fitWidth for accommodating 4 lines at smaller font size
+    let fontSize = 26;
+    let lineHeight = 22;
+    let fitWidth = 900; // Reduced fitWidth for accommodating 4 lines at smaller font size
 
     let textLines = splitWordWrap(context, value, fitWidth);
 
     if (value.length > maxCharactersForThreeLines) {
-        maxLinesForNormalFont = 4; // Allow 4 lines if there are more than 300 characters
+        maxLinesForNormalFont = 9; // Allow 4 lines if there are more than 300 characters
     }
 
     if (textLines.length > maxLinesForNormalFont) {
@@ -71,17 +80,26 @@ function drawCardText(value, yStart, maxLinesForNormalFont) {
         while (textLines.length > maxLinesForNormalFont) {
             fontSize -= fontReductionStep;
             lineHeight = fontSize * 1.2;
-            fitWidth = 400 / (fontSize / 36); // Adjust fit width proportionally to the font size
+            fitWidth = 350 / (fontSize / 36); // Adjust fit width proportionally to the font size
             textLines = splitWordWrap(context, value, fitWidth);
         }
         fontSize = Math.max(fontSize, minFontSize);
         lineHeight = fontSize * 1.2;
     }
+    if(keywords == true){
 
-    textLines.forEach((line, index) => {
+        let fillStyle = '#203c77';
+        context.font = 'italic 22px brothers-regular';
+        context.fillStyle = fillStyle;
+    }
+    else{
+        
         let fillStyle = 'black';
         context.font = `${fontSize}px franklin-gothic-book`;
         context.fillStyle = fillStyle;
+    }
+
+    textLines.forEach((line, index) => {
         context.fillText(line, xStart, yStart + index * lineHeight);
     });
 }
@@ -168,7 +186,7 @@ drawCardName = function (value) {
     // Check if the value is 18 characters or more
     if (value.length >= 18) {
         // Calculate the maximum width based on the desired length
-        var maxWidth = 650;
+        var maxWidth = 500;
 
         // Calculate the width of the text with the current font size
         getContext().font = 'italic ' + fontSize + 'px brothers-regular';
@@ -184,12 +202,11 @@ drawCardName = function (value) {
 
     // Set the font size and draw the text with black shadow
     getContext().font = 'italic ' + fontSize + 'px brothers-regular';
-    writeScaled(value, { x: 48 + 4, y: 180 + 4 });
+    writeScaled(value, { x: 228 + 4, y: 200 + 4 });
     
     // Set the font size and draw the text in white
     getContext().fillStyle = 'white';
-    writeScaled(value, { x: 48, y: 180 });
-
+    writeScaled(value, { x: 228, y: 200 });
     getContext().rotate(6 * Math.PI / 180);
 }
 
@@ -200,18 +217,18 @@ drawTeamName = function (value) {
     getContext().textAlign = "left";
     getContext().textBaseline = "middle";
     getContext().rotate(-6 * Math.PI / 180);
-    writeScaled(value, { x: 60 +4, y: 125+4 });
+    writeScaled(value, { x: 90 +4, y: 140+4 });
     getContext().fillStyle = 'white';
-    writeScaled(value, { x: 60, y: 125 });
+    writeScaled(value, { x: 90, y: 140 });
     getContext().rotate(+6 * Math.PI / 180);
 }
 
 drawFooter = function (value) {
     getContext().font = '30px brothers-regular';
     getContext().fillStyle = 'white';
-    getContext().textAlign = "left";
+    getContext().textAlign = "center";
     getContext().textBaseline = "middle";
-    writeScaled(value, { x: 90, y: 990 });
+    writeScaled(value, { x: 140, y: 1013 });
 }
 
 drawPositionName = function (value) {
@@ -222,6 +239,62 @@ drawPositionName = function (value) {
     writeScaled(value, { x: 480, y: 1010 });
 }
 
+drawKeywords = function (value) {
+    drawCardText(value, 1013, 2, true)
+}
+
+drawCapacity = function (value, x, y){
+    let angle = 90 * Math.PI / 180;
+    getContext().translate( canvas.width / 3, canvas.height / 3 );
+    getContext().font = 'bold 32px brothers-regular';
+    getContext().fillStyle = 'white';
+    getContext().textAlign = "center";
+    getContext().textBaseline = "middle";
+    getContext().rotate(angle);
+    writeScaled(value, { x, y});
+    getContext().rotate(-angle);
+    getContext().translate( -canvas.width / 3, -canvas.height / 3 );
+  
+}
+
+drawSkilstraits = function (value, x=248, y=659){
+    getContext().font = 'bold 28px brothers-regular';
+    getContext().fillStyle = '#b4191e';
+    getContext().textAlign = "left";
+    getContext().textBaseline = "middle";
+    writeScaled(value, { x, y });
+}
+
+drawPlayerDev = function (value, x, y){
+    getContext().font = 'bold 28px brothers-regular';
+    getContext().fillStyle = '#b4191e';
+    getContext().textAlign = "left";
+    getContext().textBaseline = "middle";
+    writeScaled(value, { x: 248, y: 856 });
+}
+drawCardBodyTitle =function (value, y=659 ,x=248 ){
+    getContext().font = 'bold 28px brothers-regular';
+    getContext().fillStyle = '#b4191e';
+    getContext().textAlign = "left";
+    getContext().textBaseline = "middle";
+    writeScaled(value, { x, y });
+}
+
+drawGoldPrice = function (value, x, y){
+    getContext().font = 'bold 40px brothers-regular';
+    getContext().fillStyle = 'white';
+    getContext().textAlign = "center";
+    getContext().textBaseline = "middle";
+    getContext().shadowColor = "black";
+    getContext().shadowBlur = 2
+    getContext().shadowOffsetX = 2;
+    getContext().shadowOffsetY = 2;
+    writeScaled(value, { x: 142, y: 975 });
+    getContext().shadowColor = "";
+    getContext().shadowBlur = 0
+    getContext().shadowOffsetX = 0;
+    getContext().shadowOffsetY = 0;
+}
 
 drawDevelopment = function (primary, secondary) {
 
@@ -229,12 +302,12 @@ drawDevelopment = function (primary, secondary) {
     getContext().fillStyle = 'black';
     getContext().textAlign = "left";
     getContext().textBaseline = "middle";
-    x = 265;
-    writeScaled("Primary: ", { x: x, y: 890 });
-    writeScaled("Secondary: ", { x: x, y: 930 });
-    getContext().font = '30px franklin-gothic-book';
-    writeScaled(primary, { x: x+95, y: 890 });
-    writeScaled(secondary, { x: x+125, y: 930 });
+    x = 248;
+    writeScaled(i18next.t('card.caracteristics.primary')+" : ", { x: x, y: 890 });
+    writeScaled(i18next.t('card.caracteristics.secondary')+" : ", { x: x, y: 930 });
+    getContext().font = '26px franklin-gothic-book';
+    writeScaled(primary, { x: x+115, y: 890 });
+    writeScaled(secondary, { x: x+145, y: 930 });
     
     
 }
@@ -351,7 +424,7 @@ function getModelImage() {
 }
 
 function setModelImage(image) {
-    console.log("setModelImage:" + image);
+    //console.log("setModelImage:" + image);
     $("#fighterImageUrl")[0].value = image;
 
     //  if (image != null) {
@@ -417,12 +490,34 @@ function readControls() {
     data.playerType = document.getElementById("playerType").value;
     data.playsFor = document.getElementById("playsFor").value;
     data.specialRules = document.getElementById("specialRules").value;
+    data.keywords = document.getElementById("keywords").value;
 
 
     return data;
 }
 
 function drawCardFrame(fighterData){
+    //set texts for translation
+    let skills_traits = i18next.t('card.caracteristics.skills_traits');
+    let plays_for=i18next.t('card.caracteristics.plays_for');
+    let special_rules=i18next.t('card.caracteristics.special_rules');
+    let player_development =i18next.t('card.caracteristics.player_development');
+    let agility = i18next.t('card.caracteristics.agility');
+    let devious = i18next.t('card.caracteristics.devious');
+    let general = i18next.t('card.caracteristics.general');
+    let mutations = i18next.t('card.caracteristics.mutations');
+    let passing = i18next.t('card.caracteristics.passing');
+    let strength = i18next.t('card.caracteristics.strength');
+    let MA = i18next.t('card.caracteristics.MA');
+    let S = i18next.t('card.caracteristics.S');
+    let AG = i18next.t('card.caracteristics.AG');
+    let PA = i18next.t('card.caracteristics.PA');
+    let AV = i18next.t('card.caracteristics.AV');
+    let GP = i18next.t('card.caracteristics.GP');
+
+
+
+
     playerType = document.getElementById("playerType").value;
     if(playerType == "star"){
         getContext().drawImage(document.getElementById('star_frame'), 0, 0, getCanvas().width, getCanvas().height);
@@ -437,108 +532,139 @@ function drawCardFrame(fighterData){
     drawCardName(fighterData.cardName);
     drawTeamName(fighterData.teamName);
     drawFooter(fighterData.footer);
-    yStart = (playerType === "star") ? 670 : 730;
+
+    drawGoldPrice(GP);
+    
+    yStart = (playerType === "star") ? 550 : 700;
 
     drawCardText(fighterData.cardText, yStart, 3);
-
-    if(playerType == "star"){
+    
+    if(playerType == "star"){   
+        
+        drawCardBodyTitle(skills_traits.toUpperCase(), 513);     
+        drawCardBodyTitle(plays_for.toUpperCase(), 615);   
         playsFor = document.getElementById("playsFor").value;
-        drawCardText(playsFor, 840, 1);
+        drawCardText(playsFor, 650, 1);
+        drawCardBodyTitle(special_rules.toUpperCase(), 719);   
         specialRules = document.getElementById("specialRules").value;
-        drawCardText(specialRules, 940, 3);
+        drawCardText(specialRules, 770, 8);
     }
+    else{
+        // skills & traits
+        drawCardBodyTitle(skills_traits.toUpperCase());
+
+        drawCardBodyTitle(player_development.toUpperCase(), 856);
+    }
+
+    
+    drawKeywords(fighterData.keywords);
+        
 
     if(document.getElementById("playerType").value != "star"){
         drawPositionName(fighterData.positionName);
 
         primary = "";
         if(fighterData.p_agility){
-            primary = primary + "Agility";
+            primary = primary + agility;
         }
         if(primary!="" && fighterData.p_devious){
             primary = primary + ", ";
         }
         if(fighterData.p_devious){
-            primary = primary + "Devious";
+            primary = primary + devious;
         }
         if(primary!="" && fighterData.p_general){
             primary = primary + ", ";
         }
         if(fighterData.p_general){
-            primary = primary + "General";
+            primary = primary + general;
         }
         if(primary!="" && fighterData.p_mutations){
             primary = primary + ", ";
         }
         if(fighterData.p_mutations){
-            primary = primary + "Mutations";
+            primary = primary + mutations;
         }
         if(primary!="" && fighterData.p_passing){
             primary = primary + ", ";
         }
         if(fighterData.p_passing){
-            primary = primary + "Passing";
+            primary = primary + passing;
         }
         if(primary!="" && fighterData.p_strength){
             primary = primary + ", ";
         }
         if(fighterData.p_strength){
-            primary = primary + "Strength";
+            primary = primary + strength;
         }
 
         secondary = "";
         if(fighterData.s_agility){
-            secondary = secondary + "Agility";
+            secondary = secondary + agility;
         }
         if(secondary!="" && fighterData.s_devious){
             secondary = secondary + ", ";
         }
         if(fighterData.s_devious){
-            secondary = secondary + "Devious";
+            secondary = secondary + devious;
         }
         if(secondary!="" && fighterData.s_general){
             secondary = secondary + ", ";
         }
         if(fighterData.s_general){
-            secondary = secondary + "General";
+            secondary = secondary + general;
         }
         if(secondary!="" && fighterData.s_mutations){
             secondary = secondary + ", ";
         }
         if(fighterData.s_mutations){
-            secondary = secondary + "Mutations";
+            secondary = secondary + mutations;
         }
         if(secondary!="" && fighterData.s_passing){
             secondary = secondary + ", ";
         }
         if(fighterData.s_passing){
-            secondary = secondary + "Passing";
+            secondary = secondary + passing;
         }
         if(secondary!="" && fighterData.s_strength){
             secondary = secondary + ", ";
         }
         if(fighterData.s_strength){
-            secondary = secondary + "Strength";
+            secondary = secondary + strength;
         }
         drawDevelopment(primary, secondary);
     }
     
+    if(playerType == "star"){  
+        drawCapacity(MA, -108, 208);
+        drawCapacity(S, 43, 208);
+        drawCapacity(AG, 195, 208);
+        drawCapacity(PA, 345, 208);
+        drawCapacity(AV, 498, 208);
+    }else {
+
+        drawCapacity(MA, -108, 208);
+        drawCapacity(S, 43, 210);
+        drawCapacity(AG, 199, 208);
+        drawCapacity(PA, 352, 208);
+        drawCapacity(AV, 502, 208);
+    }
     // MA
-     drawNumber(fighterData.ma, 130, 255, false);
+    drawNumber(fighterData.ma, 130, 225, false);
     // ST
-    drawNumber(fighterData.st, 130, 395, false);
+    drawNumber(fighterData.st, 130, 375, false);
     // AG
     drawNumber(fighterData.ag, 130, 530, true);
     // PA
-    drawNumber(fighterData.pa, 130, 670, true);
+    drawNumber(fighterData.pa, 130, 680, true);
     //AV
-    drawNumber(fighterData.av, 130, 805, true);
+    drawNumber(fighterData.av, 130, 825, true);
 
 }
 
 render = function (fighterData) {
-    console.log("Render:");
-    console.log(fighterData);
+    //console.log("Render:");
+    //console.log(fighterData);
     // First the textured background
     getContext().drawImage(document.getElementById('bg1'), 0, 0, getCanvas().width, getCanvas().height);
 
@@ -563,16 +689,22 @@ render = function (fighterData) {
 
 function drawNumber(num,x, y, plus){
 
+    playerType = document.getElementById("playerType").value;
+    suffix = "";
+    if(playerType == 'star'){
+        suffix = "sp"
+    }
+
     if(num<1 || num>11 ) {
         num = '-';
         plus = false;
     }
     if(num>9){
-        getContext().drawImage(document.getElementById('sf1'), x-15, y, 35, 70);
+        getContext().drawImage(document.getElementById('sf1'+suffix), x-15, y, 35, 70);
         x = x + 35-15;
         num = num -10;
     }
-    elementId = 'sf'+num;
+    elementId = 'sf'+num+suffix;
 
     if(num == 1) {
         width = 35;
@@ -583,7 +715,7 @@ function drawNumber(num,x, y, plus){
 
     getContext().drawImage(document.getElementById(elementId), x, y, width, 70);
     if (plus){
-        getContext().drawImage(document.getElementById('sf+'), x+width, y, 39, 70);
+        getContext().drawImage(document.getElementById('sf+'+suffix), x+width, y, 39, 70);
     }
 }
 
@@ -637,6 +769,7 @@ async function writeControls(fighterData) {
     document.getElementById("playerType").value = fighterData.playerType;
     document.getElementById("playsFor").value = fighterData.playsFor;
     document.getElementById("specialRules").value = fighterData.specialRules;
+    document.getElementById("keywords").value = fighterData.keywords;
 
 
     // render the updated info
@@ -646,14 +779,15 @@ async function writeControls(fighterData) {
 function defaultFighterData() {
     var fighterData = new Object;
     fighterData.name = "BloodBowl_Card";
-    fighterData.cardName = "Card Name";
-    fighterData.teamName = "Team Name";
+    fighterData.cardName = i18next.t('card.caracteristics.player_name');
+    fighterData.teamName = i18next.t('card.caracteristics.team_name');
     fighterData.playerType = "roster";
     fighterData.playsFor = "";
     fighterData.specialRules = "";
+    fighterData.keywords = "";
     fighterData.footer = "100,000";
     fighterData.positionName = "";
-    fighterData.cardText = "Body Text";
+    fighterData.cardText = i18next.t('card.caracteristics.body_text');
     fighterData.imageUrl = null;
     fighterData.imageProperties = getDefaultModelImageProperties();
     
@@ -702,13 +836,13 @@ function loadLatestFighterData() {
         latestCardName = "BloodBowl_Card";
     }
 
-    console.log("Loading '" + latestCardName + "'...");
+    //console.log("Loading '" + latestCardName + "'...");
 
     var data = loadFighterData(latestCardName);
 
     if (data) {
-        console.log("Loaded data:");
-        console.log(data);
+        //console.log("Loaded data:");
+        //console.log(data);
     }
     else {
         console.log("Failed to load data, loading defaults.");
@@ -849,7 +983,7 @@ function onResetToDefault() {
 
 function refreshSaveSlots() {
     // Remove all
-    $('select').children('option').remove();
+    $('select').not("#languageSwitcher").children('option').remove();
 
     var fighterDataName = readControls().name;
 
@@ -869,7 +1003,7 @@ function refreshSaveSlots() {
 async function onSaveClicked() {
     data = readControls();
     // temp null while I work out image saving
-    console.log(data);
+    //console.log(data);
     data.base64Image = await handleImageUrlFromDisk(data.imageUrl)
 
     // need to be explicit due to sub arrays

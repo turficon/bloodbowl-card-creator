@@ -4,7 +4,7 @@
         <h2 class="h5 mb-0">
             <button class="btn btn-link" data-toggle="collapse" data-target="#fightersCollapseFive"
                 aria-expanded="false" aria-controls="fightersCollapseFive">
-                Player Stats
+                <span data-i18n="card.caracteristics.player_stats">
             </button>
         </h2>
     </div>
@@ -13,21 +13,21 @@
         <div class="card-body">
 
             <div class="form-group">
-                <label for="cardName">Player Name</label>
+                <label for="cardName" data-i18n="card.caracteristics.player_name"></label>
                 <input class="form-control" type="text" id="cardName" name="cardName" value=" " oninput="onAnyChange()">
             </div>
 
             <div class="form-group">
-                <label for="teamName">Team Name</label>
+                <label for="teamName" data-i18n="card.caracteristics.team_name"></label>
                 <input class="form-control" type="text" id="teamName" name="teamName" value=" " oninput="onAnyChange()">
             </div>
 
             <div class="form-group">
-                <label for="playerType">Player Type</label>
+                <label for="playerType" data-i18n="card.caracteristics.player_type"></label>
                 <select class="form-control" id="playerType" name="playerType" onchange="onAnyChange()">
                     <optgroup label="Card Type">
-                    <option value="roster" selected>Roster Player</option>
-                    <option value="star">Star Player</option>
+                    <option value="roster" selected data-i18n="card.caracteristics.roster_player">Roster Player</option>
+                    <option value="star" data-i18n="card.caracteristics.star_player">Star Player</option>
                 </optgroup>
                 </select>
             </div>
@@ -37,35 +37,35 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <label for="ma">MA</label>
+                        <label for="ma" data-i18n="card.caracteristics.MA">M</label>
                         <input class="form-control" id="ma" min="0" max="9" name="ma"
                             oninput="onAnyChange()" type="number" value="4">
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <label for="st">ST</label>
+                        <label for="st" data-i18n="card.caracteristics.S">F</label>
                         <input class="form-control" id="st" min="0" max="8" name="st"
                             oninput="onAnyChange()" type="number" value="3">
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <label for="ag">AG</label>
+                        <label for="ag" data-i18n="card.caracteristics.AG">AG</label>
                         <input class="form-control" id="ag" min="0" max="6" name="ag"
                             oninput="onAnyChange()" type="number" value="3">
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <label for="pa">PA</label>
+                        <label for="pa" data-i18n="card.caracteristics.PA">CP</label>
                         <input class="form-control" id="pa" min="0" max="6" name="pa"
                             oninput="onAnyChange()" type="number" value="3">
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <label for="av">AV</label>
+                        <label for="av" data-i18n="card.caracteristics.AV">AR</label>
                         <input class="form-control" id="av" min="0" max="11" name="av"
                             oninput="onAnyChange()" type="number" value="9">
                     </div>
@@ -73,95 +73,102 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <label for="footer">GP</label>
+                    <label for="footer" data-i18n="card.caracteristics.GP">PO</label>
                     <input class="form-control" type="text" id="footer" name="footer" value=" " oninput="onAnyChange()">
                 </div>
             </div>
              
             <div class="form-group">
-                <label for="cardText">Skills & Traits</label>
+                <label for="cardText" data-i18n="card.caracteristics.skills_traits">Compétences et traits</label>
                 <textarea class="form-control" id="cardText" name="cardText" rows="3"
-                    oninput="onAnyChange()">Body Text</textarea>
+                    oninput="onAnyChange()">Texte de la carte</textarea>
             </div>
 
             <div class="row">
                 <div class="col-sm-6">
-                    <label for="playsFor">Plays For</label>
+                    <label for="playsFor" data-i18n="card.caracteristics.plays_for">Joue pour</label>
                     <input class="form-control" type="text" id="playsFor" name="playsFor" value=" " oninput="onAnyChange()">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="specialRules">Special Rules</label>
+                <label for="specialRules" data-i18n="card.caracteristics.special_rules">Rêgles Spéciales</label>
                 <textarea class="form-control" id="specialRules" name="specialRules" rows="3"
                     oninput="onAnyChange()"></textarea>
             </div>
 
             <div class="form-group">
-                <label for="positionName">Position</label>
+                <label for="keywords" data-i18n="card.caracteristics.keywords">Mots-clefs</label>
+                <textarea class="form-control" id="keywords" name="keywords" rows="2"
+                    oninput="onAnyChange()"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="positionName" data-i18n="card.caracteristics.position">Position</label>
                 <input class="form-control" type="text" id="positionName" name="positionName" value=" " oninput="onAnyChange()">
             </div>
 
-            <div class="row">
-                Secondary Skills:
-                <div class="col-sm-1">
-                    <label for="s_agility">A</label>
-                    <input type="checkbox" id="s_agility" name="s_agility" oninput="onAnyChange()">
-                </div>
-                    <div class="col-sm-1">
-                        <label for="s_devious">D</label>
-                        <input type="checkbox" id="s_devious" name="s_devious" oninput="onAnyChange()">
-                    </div>
-                    <div class="col-sm-1">
-                        <label for="s_general">G</label>
-                        <input type="checkbox" id="s_general" name="s_general" oninput="onAnyChange()">
-                    </div>
-                    <div class="col-sm-1">
-                        <label for="s_mutations">M</label>
-                        <input type="checkbox" id="s_mutations" name="s_mutations" oninput="onAnyChange()">
-                    </div>  
-                    <div class="col-sm-1">
-                        <label for="s_passing">P</label>
-                        <input type="checkbox" id="s_passing" name="s_passing" oninput="onAnyChange()">
-                    </div>
-                    <div class="col-sm-1">
-                        <label for="s_strength">S</label>
-                        <input type="checkbox" id="s_strength" name="s_strength" oninput="onAnyChange()">
-                    </div>
-            </div>
 
-            <div class="row">
-                Primary Skills:
+            <div class="row col-12">
+                <span data-i18n="card.caracteristics.primary_skills"></span>
 
                 <div class="col-sm-1">
-                    <label for="p_agility">A</label>
+                    <label for="p_agility" data-i18n="card.caracteristics.agility_box">A</label>
                     <input type="checkbox" id="p_agility" name="p_agility" oninput="onAnyChange()">
                     
                 </div>
                     <div class="col-sm-1">
-                        <label for="p_devious">D</label>
+                        <label for="p_devious" data-i18n="card.caracteristics.devious_box">D</label>
                         <input type="checkbox" id="p_devious" name="p_devious" oninput="onAnyChange()">
                     </div>
                     <div class="col-sm-1"">
-                        <label for="p_general">G</label>
+                        <label for="p_general" data-i18n="card.caracteristics.general_box">G</label>
                         <input type="checkbox" id="p_general" name="p_general" oninput="onAnyChange()">
                         
                     </div>
                     <div class="col-sm-1">
-                        <label for="p_mutations">M</label>
+                        <label for="p_mutations" data-i18n="card.caracteristics.mutations_box">M</label>
                         <input type="checkbox" id="p_mutations" name="p_mutations" oninput="onAnyChange()">
                     </div>   
                     <div class="col-sm-1">
-                        <label for="p_passing">P</label>
+                        <label for="p_passing" data-i18n="card.caracteristics.passing_box">P</label>
                         <input type="checkbox" id="p_passing" name="p_passing" oninput="onAnyChange()">
                     </div>
 
                     <div class="col-sm-1">
-                        <label for="p_strength">S</label>
+                        <label for="p_strength" data-i18n="card.caracteristics.strength_box">S</label>
                         <input type="checkbox" id="p_strength" name="p_strength" oninput="onAnyChange()">
                     </div>
  
 
+            </div>
+
+            <div class="row col-12">
+                <span data-i18n="card.caracteristics.secondary_skills"></span>
+                <div class="col-sm-1">
+                    <label for="s_agility" data-i18n="card.caracteristics.agility_box">A</label>
+                    <input type="checkbox" id="s_agility" name="s_agility" oninput="onAnyChange()">
+                </div>
+                    <div class="col-sm-1">
+                        <label for="s_devious" data-i18n="card.caracteristics.devious_box">D</label>
+                        <input type="checkbox" id="s_devious" name="s_devious" oninput="onAnyChange()">
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="s_general" data-i18n="card.caracteristics.general_box">G</label>
+                        <input type="checkbox" id="s_general" name="s_general" oninput="onAnyChange()">
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="s_mutations" data-i18n="card.caracteristics.mutations_box">M</label>
+                        <input type="checkbox" id="s_mutations" name="s_mutations" oninput="onAnyChange()">
+                    </div>  
+                    <div class="col-sm-1">
+                        <label for="s_passing" data-i18n="card.caracteristics.passing_box">P</label>
+                        <input type="checkbox" id="s_passing" name="s_passing" oninput="onAnyChange()">
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="s_strength" data-i18n="card.caracteristics.strength_box">S</label>
+                        <input type="checkbox" id="s_strength" name="s_strength" oninput="onAnyChange()">
+                    </div>
             </div>
         </div>
     </div>
