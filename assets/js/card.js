@@ -492,9 +492,9 @@ function drawCardFrame(cardData){
 
         drawCapacity(MA, -108, 208);
         drawCapacity(S, 43, 210);
-        drawCapacity(AG, 199, 208);
-        drawCapacity(PA, 352, 208);
-        drawCapacity(AV, 502, 208);
+        drawCapacity(AG, 195, 208);
+        drawCapacity(PA, 347, 208);
+        drawCapacity(AV, 500, 208);
     }
     // MA
     drawNumber(cardData.ma, 130, 225, false);
