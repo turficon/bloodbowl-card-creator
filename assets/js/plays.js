@@ -1,36 +1,4 @@
-const writeValue = function(ctx, value, position) {
-    if (!ctx || typeof ctx.fillText !== 'function') {
-      throw new Error('Invalid canvas context');
-    }
-  
-    const canvas = getCanvas();
-    const backgroundImage = getBackgroundImage();
-    const scale = getScalingFactor(canvas, backgroundImage);
-    const scaledPosition = {
-      x: position.x / scale.x,
-      y: position.y / scale.y
-    };
-  
-    ctx.scale(scale.x, scale.y);
-    ctx.fillText(value, scaledPosition.x, scaledPosition.y);
-  };
-
-getScalingFactor = function (canvas, warcryCardOne) {
-    return {
-        x: canvas.width / warcryCardOne.width,
-        y: canvas.height / warcryCardOne.height
-    };
-}
-
-getCanvas = function () {
-    return document.getElementById("canvas");
-}
-
-getContext = function () {
-    return getCanvas().getContext("2d");
-}
-
-function getBackgroundImage() {
+getBackgroundImage= function() {
     const backgroundMap = {
         'bg-07': 'bg-ghur-401',
         'bg2': 'bg2',
@@ -42,33 +10,10 @@ function getBackgroundImage() {
     return document.getElementById(backgroundImageId);
 }
 
-
-
 drawBorder = function () {
     if(!document.getElementById("removeBorder").checked){
         getContext().drawImage(document.getElementById('card-border'), 0, 0, getCanvas().width, getCanvas().height);
     }
-}
-
-
-scalePixelPosition = function (pixelPosition) {
-    var scalingFactor = getScalingFactor(getCanvas(), getBackgroundImage());
-    var scaledPosition = { x: pixelPosition.x * scalingFactor.x, y: pixelPosition.y * scalingFactor.y };
-    return scaledPosition;
-}
-
-writeScaled = function (value, pixelPos) {
-    var scaledPos = scalePixelPosition(pixelPos);
-    writeValue(getContext(), value, scaledPos);
-}
-
-drawCardElementFromInput = function (inputElement, pixelPosition) {
-    var value = inputElement.value;
-    writeScaled(value, pixelPosition);
-}
-
-drawCardElementFromInputId = function (inputId, pixelPosition) {
-    drawCardElementFromInput(document.getElementById(inputId), pixelPosition);
 }
 
 drawplayName = function (value) {
@@ -97,89 +42,8 @@ drawplayName = function (value) {
     writeScaled(value, { x: startX, y: startY });
 }
 
-
-
-
-function getLabel(element) {
-    return $(element).prop("labels")[0];
-}
-
-function getImage(element) {
-    return $(element).find("img")[0];
-}
-
-
-function drawImage(scaledPosition, scaledSize, image) {
-    if (image != null) {
-        if (image.complete) {
-            getContext().drawImage(image, scaledPosition.x, scaledPosition.y, scaledSize.x, scaledSize.y);
-        }
-        else {
-            image.onload = function () { drawImage(scaledPosition, scaledSize, image); };
-        }
-    }
-}
-
-function drawImageSrc(scaledPosition, scaledSize, imageSrc) {
-    if (imageSrc != null) {
-        var image = new Image();
-        image.onload = function () { drawImage(scaledPosition, scaledSize, image); };
-        image.src = imageSrc;
-    }
-}
-
-
-function drawModel(imageUrl, imageProps) {
-    if (imageUrl != null) {
-        var image = new Image();
-        image.onload = function () {
-            var position = scalePixelPosition({ x: imageProps.offsetX, y: imageProps.offsetY });
-            var scale = imageProps.scalePercent / 100.0;
-            var width = image.width * scale;
-            var height = image.height * scale;
-            getContext().drawImage(image, position.x, position.y, width, height);
-            //URL.revokeObjectURL(image.src);
-        };
-        image.src = imageUrl;
-    }
-}
-
-function getName() {
-    //var textInput = $("#saveNameInput")[0];
-    return "Bloodbowl_Play_Card";
-}
-
-function setName(name) {
-    //var textInput = $("#saveNameInput")[0];
-    //textInput.value = name;
-}
-
-
 function setModelImage(image) {
     $("#missionImageUrl")[0].value = image;
-}
-
-function getModelImage() {
-    var imageSelect = $("#imageSelect")[0];
-
-    if (imageSelect.files.length > 0) {
-        return URL.createObjectURL(imageSelect.files[0]);
-    }
-    return null;
-}
-
-function getModelImageProperties() {
-    return {
-        offsetX: $("#imageOffsetX")[0].valueAsNumber,
-        offsetY: $("#imageOffsetY")[0].valueAsNumber,
-        scalePercent: $("#imageScalePercent")[0].valueAsNumber
-    };
-}
-
-function setModelImageProperties(modelImageProperties) {
-    $("#imageOffsetX")[0].value = modelImageProperties.offsetX;
-    $("#imageOffsetY")[0].value = modelImageProperties.offsetY;
-    $("#imageScalePercent")[0].value = modelImageProperties.scalePercent;
 }
 
 
@@ -190,16 +54,6 @@ function getFighterImageUrl() {
     // }
     return imageSelect;
 }
-
-function getDefaultModelImageProperties() {
-    return {
-        offsetX: 0,
-        offsetY: 0,
-        scalePercent: 100
-    };
-}
-
-
 
 function readControls() {
     var data = new Object;
@@ -296,7 +150,7 @@ const renderFighterImage = function(missionData) {
 
 
 
-async function writeControls(data) {
+writeControls = async function(data) {
     //setName("Bloodbowl_Play_Card"); // Always default, trying to move away from this
 
     // here we check for base64 loaded image and convert it back to imageUrl
@@ -470,45 +324,6 @@ function loadmissionData(missionDataName) {
     return null;
 }
 
-function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL;
-}
-
-function onload2promise(obj) {
-    return new Promise((resolve, reject) => {
-        obj.onload = () => resolve(obj);
-        obj.onerror = reject;
-    });
-}
-
-async function getBase64ImgFromUrl(imgUrl) {
-    let img = new Image();
-    let imgpromise = onload2promise(img); // see comment of T S why you should do it this way.
-    img.src = imgUrl;
-    await imgpromise;
-    var imgData = getBase64Image(img);
-    return imgData;
-}
-
-async function handleImageUrlFromDisk(imageUrl) {
-    if (imageUrl &&
-        imageUrl.startsWith("blob:")) {
-        // The image was loaded from disk. So we can load it later, we need to stringify it.
-        imageUrl = await getBase64ImgFromUrl(imageUrl);
-    }
-
-    return imageUrl;
-}
-
 function getLatestmissionDataName() {
     return "latestmissionData";
 }
@@ -529,11 +344,7 @@ window.onload = function () {
 
 }
 
-function validateInput(input) {
-    // Only allow letters, spaces, and hyphens
-    var regex = /^[a-zA-Z\s:-]+$/;
-    return regex.test(input);
-}
+
 
 onAnyChange = function () {
     var missionData = readControls();
@@ -547,13 +358,6 @@ onFighterImageUpload = function () {
     var missionData = readControls();
     render(missionData);
     saveLatestmissionData();
-}
-
-
-function onClearCache() {
-    window.localStorage.clear();
-    location.reload();
-    return false;
 }
 
 function onResetToDefault() {
@@ -633,22 +437,6 @@ $(document).ready(function () {
     
 });
 
-async function readJSONFile(file) {
-    // Function will return a new Promise which will resolve or reject based on whether the JSON file is read and parsed successfully
-    return new Promise((resolve, reject) => {
-        // Define a FileReader Object to read the file
-        let fileReader = new FileReader();
-        // Specify what the FileReader should do on the successful read of a file
-        fileReader.onload = event => {
-            // If successfully read, resolve the Promise with JSON parsed contents of the file
-            resolve(JSON.parse(event.target.result))
-        };
-        // If the file is not successfully read, reject with the error
-        fileReader.onerror = error => reject(error);
-        // Read from the file, which will kick-off the onload or onerror events defined above based on the outcome
-        fileReader.readAsText(file);
-    });
-}
 
 async function fileChange(file) {
     // Function to be triggered when file input changes
@@ -787,43 +575,7 @@ function writeScaledBorder(value, startX, startY) {
 
 
 
-function splitWordWrap(context, text, fitWidth) {
-    // this was modified from the print version to only return the text array
-    return_array = [];
-    var lines = text.split('\n');
-    lineNum = 0;
-    for (var i = 0; i < lines.length; i++) {
-        fitWidth = fitWidth || 0;
-        if (fitWidth <= 0) {
-            return_array.push(lines[i]);
-            lineNum++;
-        }
-        var words = lines[i].split(' ');
-        var idx = 1;
-        while (words.length > 0 && idx <= words.length) {
-            var str = words.slice(0, idx).join(' ');
-            var w = context.measureText(str).width;
-            if (w > fitWidth) {
-                if (idx == 1) {
-                    idx = 2;
-                }
-                return_array.push(words.slice(0, idx - 1).join(' '));
-                lineNum++;
-                words = words.splice(idx - 1);
-                idx = 1;
-            }
-            else {
-                idx++;
-            }
-        }
-        if (idx > 0) {
-            return_array.push(words.join(' '));
-            lineNum++;
-        }
 
-    }
-    return return_array;
-}
 
 
 function drawText() {

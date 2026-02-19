@@ -17,10 +17,11 @@ $(function () {
   let storedLng = window.localStorage.getItem("lang");
 
   let fallbackLng= "en"
-
   if(storedLng != null){
     fallbackLng = storedLng;
   }
+
+
 
   // use plugins and options as needed, for options, detail see
   // https://www.i18next.com
@@ -58,11 +59,13 @@ $(function () {
         
         const chosenLng = $(this).find('option:selected').attr('value')
         
-        
-        window.localStorage.setItem("lang", chosenLng);
-        window.localStorage.removeItem("fighterDataMap");
+        if(storedLng != chosenLng){
+          window.localStorage.setItem("lang", chosenLng);
+          window.localStorage.removeItem("fighterDataMap");
            
-        location.reload();
+          location.reload();
+        }
+        
         i18next.changeLanguage(chosenLng, () => {
           rerender()
 
