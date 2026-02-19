@@ -51,6 +51,18 @@
         "deployement":{
 
         },
+        "special":{
+            "card_details" : "Card Details",
+            "card_name": "Card Name",
+            "font_size" : "Font Size",
+            "timing" :"Timing",
+            "timing_text" : "Timing Text",
+            "duration" : "Duration",
+            "duration_text" : "Duration Text",
+            "effect" : "Effect",
+            "effect_text" : "Effect Text",
+            "footer" : "Footer"
+        },
         "image":{
             "player_image": "Player Image",
             "load_image" : "Load Image",

@@ -51,6 +51,18 @@
         "deployement":{
 
         },
+        "special":{
+            "card_details" : "Détails de la carte",
+            "card_name": "Nom de la carte",
+            "font_size" : "Taille de police",
+            "timing" :"Timing",
+            "timing_text" : "Timing Text",
+            "duration" : "Durée",
+            "duration_text" : "Texte de la durée",
+            "effect" : "Effet",
+            "effect_text" : "Texte de l'effet",
+            "footer" : "Pied de carte"
+        },
         "image":{
             "player_image": "Image du joueur",
             "load_image" : "Charger Image",

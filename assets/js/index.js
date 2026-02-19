@@ -54,7 +54,7 @@ saveLatestCardData = function(dataRef) {
     if (!cardData.name) {
         return;
     }
-    window.localStorage.setItem(dataRef, cardData.name);
+    window.localStorage.setItem(dataRef, JSON.stringify(cardData));
 }
 
 loadCardData = function(dataRef) {
@@ -157,6 +157,21 @@ setName = function (name) {
 * image Manipulation
 */
 
+onCardImageUpload = function () {
+    image = getModelImage();
+    setModelImage(image);
+    var cardData = readControls();
+    render(cardData);
+    saveLatestcardData();
+}
+
+function getCardImageUrl(cardImage) {
+    var imageSelect = $("#fighterImageUrl")[0].value;
+    // if (imageSelect.files.length > 0) {
+    //return URL.createObjectURL(imageSelect.files[0]);
+    // }
+    return imageSelect;
+}
 
 onload2promise = function(obj) {
     return new Promise((resolve, reject) => {

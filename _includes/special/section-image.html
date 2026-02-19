@@ -4,7 +4,7 @@
         <h2 class="h5 mb-0">
             <button class="btn btn-link" data-toggle="collapse" data-target="#fightersCollapseTwo" aria-expanded="false"
                 aria-controls="fightersCollapseTwo">
-                Bonus image
+                <span data-i18n="card.image.player_image"></span>
             </button>
         </h2>
     </div>
@@ -13,24 +13,24 @@
         <div class="card-body">
 
             <div class="form-group">
-                <label for="imageSelect">Load image</label>
+                <label for="imageSelect" data-i18n="card.image.load_image">Load image</label>
                 <input class="form-control-file" id="imageSelect" oninput="onFighterImageUpload()" type="file">
             </div>
 
             <input type="hidden" id="fighterImageUrl" name="fighterImageUrl" value="">
 
             <div class="form-group">
-                <label for="imageOffsetX">X offset (&#8596;)</label>
+                <label for="imageOffsetX" data-i18n="card.image.x_offset">X offset (&#8596;)</label>
                 <input class="form-control" id="imageOffsetX" oninput="onAnyChange()" type="number" value="0" />
             </div>
 
             <div class="form-group">
-                <label for="imageOffsetY">Y offset (&#8597;)</label>
+                <label for="imageOffsetY" data-i18n="card.image.y_offset">Y offset (&#8597;)</label>
                 <input class="form-control" id="imageOffsetY" oninput="onAnyChange()" type="number" value="0" />
             </div>
 
             <div class="form-group">
-                <label for="imageScalePercent">Scale (%)</label>
+                <label for="imageScalePercent" data-i18n="card.image.scale_percent">Scale (%)</label>
                 <input class="form-control" id="imageScalePercent" min="0" max="300" oninput="onAnyChange()"
                     type="number" value="100" />
             </div>
