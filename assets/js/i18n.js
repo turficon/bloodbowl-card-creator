@@ -3,9 +3,6 @@ const lngs = {
   fr: { nativeName: 'Français' }
 }
 
-
-
-
 const rerender = () => {
   // start localizing, details:
   // https://github.com/i18next/jquery-i18next#usage-of-selector-function
@@ -34,7 +31,7 @@ $(function () {
       fallbackLng: fallbackLng,
       backend: {
       
-        loadPath: '/assets/i18n/locales/{{lng}}/{{ns}}.json'
+        loadPath: 'assets/js/i18n/locales/{{lng}}/{{ns}}.json'
       }
     }, (err, t) => {
       if (err) return console.error(err)
