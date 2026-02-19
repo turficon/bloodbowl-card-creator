@@ -56,9 +56,9 @@ function drawCardText(value, yStart, maxLinesForNormalFont, keywords=false) {
     //let yStart = (playerType === "star") ? 680 : 730;
     let xStart = 265;
 
-    let fontSize = 26;
-    let lineHeight = 22;
-    let fitWidth = 900; // Reduced fitWidth for accommodating 4 lines at smaller font size
+    let fontSize = 32;
+    let lineHeight = 28;
+    let fitWidth = 500; // Reduced fitWidth for accommodating 4 lines at smaller font size
 
     let textLines = splitWordWrap(context, value, fitWidth);
 
@@ -389,12 +389,12 @@ function drawCardFrame(cardData){
     if(playerType == "star"){   
         
         drawCardBodyTitle(skills_traits.toUpperCase(), 513);     
-        drawCardBodyTitle(plays_for.toUpperCase(), 615);   
+        drawCardBodyTitle(plays_for.toUpperCase(), 650);   
         playsFor = document.getElementById("playsFor").value;
-        drawCardText(playsFor, 650, 1);
-        drawCardBodyTitle(special_rules.toUpperCase(), 719);   
+        drawCardText(playsFor, 680, 1);
+        drawCardBodyTitle(special_rules.toUpperCase(), 750);   
         specialRules = document.getElementById("specialRules").value;
-        drawCardText(specialRules, 770, 8);
+        drawCardText(specialRules, 780, 2);
     }
     else{
         // skills & traits
