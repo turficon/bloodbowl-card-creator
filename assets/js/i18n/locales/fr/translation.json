@@ -3,6 +3,13 @@
         "title": "Blood Bowl Créateur de cartes",
         "description": "Une application pour créer des cartes du jeu de plateau Blood Bowl, personnalisées et prêtes à imprimer."
     },
+    "nav":{
+        "players" : "Joueurs",
+        "special_cards" : "Cartes Spéciales",
+        "card_back" : "Dos de carte",
+        "plays" : "Tactiques de jeux",
+        "instructions" : "Instructions"
+    },
     "card":{
         "action":{
             "remove_border":"Supprimer les bords pour ajouter une marge d'impression",

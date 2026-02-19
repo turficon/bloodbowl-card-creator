@@ -3,6 +3,13 @@
         "title": "Blood Bowl Créateur de cartes",
         "description": "A client-side web app for creating custom, print-ready Blood Bowl tabletop game cards."
     },
+    "nav":{
+        "players" : "Players",
+        "special_cards" : "Special Cards",
+        "card_back" : "Card Back",
+        "plays" : "Plays",
+        "instructions" : "Instructions"
+    },
     "card":{
         "action":{
             "remove_border":"Remove border to add bleed area for printing",

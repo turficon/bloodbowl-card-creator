@@ -1,16 +1,10 @@
-const dataRef = "specialCard";
+const dataRef = "cardBack";
 
 function defaultCardData() {
     var cardData = new Object;
     cardData.name = "BloodBowl_Special_Card";
     cardData.cardName = "Card Name";
     cardData.cardText = "Body Text";
-    cardData.effect = false;
-    cardData.effectText = "";
-    cardData.duration = false;
-    cardData.durationText = "";
-    cardData.timing = false;
-    cardData.timingText = "";
     cardData.footer = "Footer";
     cardData.imageUrl = null;
     cardData.imageProperties = getDefaultModelImageProperties();
@@ -52,76 +46,6 @@ function drawCardText() {
     context.font = `italic ${defaultFontSize}px franklin-gothic-book`;
     context.fillStyle = 'black';
     lines = splitWordWrap(context, data.cardText, maxLength);
-
-    for (let i = 0; i < lines.length; i++) {
-        context.fillText(lines[i], xStart, yStart);
-        yStart += lineHeight;
-    }
-
-    // Timing
-    if(data.timing){
-        // Set the image source to the server path of the image
-        img3.src = 'assets/img/special/timing.png';
-        timing_y = yStart;
-        // When the image is loaded, draw it on the canvas
-        img3.onload = function() {
-            // Draw the image on the canvas at position (x, y)
-            ctx.drawImage(img3, getCanvas().width/2 - 169/2, timing_y);
-        };
-        yStart += gapAfterTitle;
-    }
-
-    // Split input value into lines
-    context.font = `normal ${defaultFontSize}px franklin-gothic-book`;
-    context.fillStyle = 'black';
-    lines = splitWordWrap(context, data.timingText, maxLength);
-
-    for (let i = 0; i < lines.length; i++) {
-        context.fillText(lines[i], xStart, yStart);
-        yStart += lineHeight;
-    }
-
-
-    // Duration
-    if(data.duration){
-        // Set the image source to the server path of the image
-        img2.src = 'assets/img/special/duration.png';
-        duration_y = yStart;
-        // When the image is loaded, draw it on the canvas
-        img2.onload = function() {
-            // Draw the image on the canvas at position (x, y)
-            ctx.drawImage(img2, getCanvas().width/2 - 224/2, duration_y);
-        };
-        yStart += gapAfterTitle;
-    }
-
-    // Split input value into lines
-    context.font = `normal ${defaultFontSize}px franklin-gothic-book`;
-    context.fillStyle = 'black';
-    lines = splitWordWrap(context, data.durationText, maxLength);
-
-    for (let i = 0; i < lines.length; i++) {
-        context.fillText(lines[i], xStart, yStart);
-        yStart += lineHeight;
-    }
-
-    // Effect
-    if(data.effect){
-        // Set the image source to the server path of the image
-        img1.src = 'assets/img/special/effect.png';
-        effect_y = yStart;
-        // When the image is loaded, draw it on the canvas
-        img1.onload = function() {
-            // Draw the image on the canvas at position (x, y)
-            ctx.drawImage(img1, getCanvas().width/2 - 156/2, effect_y);
-        };
-        yStart += gapAfterTitle;
-    }
-
-    // Split input value into lines
-    context.font = `normal ${defaultFontSize}px franklin-gothic-book`;
-    context.fillStyle = 'black';
-    lines = splitWordWrap(context, data.effectText, maxLength);
 
     for (let i = 0; i < lines.length; i++) {
         context.fillText(lines[i], xStart, yStart);
@@ -200,7 +124,6 @@ drawFooter = function (value) {
 }
 
 
-
 function setModelImage(image) {
     console.log("setModelImage:" + image);
     $("#fighterImageUrl")[0].value = image;
@@ -224,12 +147,6 @@ function readControls() {
     data.cardName = document.getElementById("cardName").value;
     data.footer = document.getElementById("footer").value;
     data.cardText = document.getElementById("cardText").value;
-    data.effect = document.getElementById("effectCheckbox").checked;
-    data.effectText = document.getElementById("effectText").value;
-    data.duration = document.getElementById("durationCheckbox").checked;
-    data.durationText = document.getElementById("durationText").value;
-    data.timing = document.getElementById("timingCheckbox").checked;
-    data.timingText = document.getElementById("timingText").value;
     data.fontSizeSelector = document.getElementById("fontSizeSelector").value;
 
     return data;
@@ -259,7 +176,7 @@ render = function (cardData) {
     if (cardData.imageUrl) {
         var image = new Image();
         image.onload = function () {
-        var position = scalePixelPosition({ x: 100 + cardData.imageProperties.offsetX, y: cardData.imageProperties.offsetY });
+        var position = scalePixelPosition({ x: 225 + cardData.imageProperties.offsetX, y: 350 + cardData.imageProperties.offsetY });
         var scale = cardData.imageProperties.scalePercent / 100.0;
         var width = image.width * scale;
         var height = image.height * scale;
@@ -294,12 +211,6 @@ async function writeControls(cardData) {
     $("#cardName")[0].value = cardData.cardName;
     $("#footer")[0].value = cardData.footer;
     $("#cardText")[0].value = cardData.cardText;
-    $("#effectCheckbox")[0].checked = cardData.effect;
-    $("#effectText")[0].value = cardData.effectText;
-    $("#durationCheckbox")[0].checked = cardData.duration;
-    $("#durationText")[0].value = cardData.durationText;
-    $("#timingCheckbox")[0].checked = cardData.timing;
-    $("#timingText")[0].value = cardData.timingText;
     $("#fontSizeSelector")[0].value = cardData.fontSizeSelector; // Set the fontSizeSelector value
 
     render(cardData);
