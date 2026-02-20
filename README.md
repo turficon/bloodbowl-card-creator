@@ -5,6 +5,7 @@ A client-side web app for creating custom, print-ready Blood Bowl tabletop game 
 ## Card Types
 
 - **Player Cards** (`index.html`) — Roster and Star Player cards with stats (MA, ST, AG, PA, AV), skill categories, custom images, and team logos
+- **Cards Back** (`cardBack.html`) — Custom cards back
 - **Special Cards** (`special.html`) — Custom rules and ability cards
 - **Playbook Cards** (`playbook.html`) — Team strategy and play diagrams with searchable pre-loaded plays
 
