@@ -1,9 +1,3 @@
-window.onload = function () {
-    //window.localStorage.clear();
-    var cardData = loadCardData(dataRef);
-    writeControls(cardData);
-    refreshSaveSlots();
-}
 
 onAnyChange = function () {
     var cardData = readControls();

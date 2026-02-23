@@ -10,9 +10,14 @@ const rerender = () => {
 
   //$('title').text($.t('head.title'))
   $('meta[name=description]').attr('content', $.t('head.description'))
+  
+
+  var cardData = loadCardData(dataRef);
+  writeControls(cardData);
+  refreshSaveSlots();
 }
 
-$(function () {
+initI18n = function () {
 
   let storedLng = window.localStorage.getItem("lang");
 
@@ -35,26 +40,26 @@ $(function () {
         loadPath: 'assets/js/i18n/locales/{{lng}}/{{ns}}.json'
       }
     }, (err, t) => {
-      if (err) return console.error(err)
+      if (err) return console.error(err);
 
       // define the formatter function
       i18next.services.formatter.add('LLLL', (value, lng, options) => {
-        return moment(value).locale(lng).format('LLLL')
+        return moment(value).locale(lng).format('LLLL');
       })
 
       // for options see
       // https://github.com/i18next/jquery-i18next#initialize-the-plugin
-      jqueryI18next.init(i18next, $, { useOptionsAttr: true })
+      jqueryI18next.init(i18next, $, { useOptionsAttr: true });
 
       // fill language switcher
       Object.keys(lngs).map((lng) => {
-        const opt = new Option(lngs[lng].nativeName, lng)
+        const opt = new Option(lngs[lng].nativeName, lng);
         if (lng === i18next.resolvedLanguage) {
-          opt.setAttribute('selected', 'selected')
+          opt.setAttribute('selected', 'selected');
         }
-        $('#languageSwitcher').append(opt)
+        $('#languageSwitcher').append(opt);
       })
-      let languageChangedCounter = 0
+      let languageChangedCounter = 0;
       $('#languageSwitcher').change((a, b, c) => {
         
         const chosenLng = $(this).find('option:selected').attr('value')
@@ -67,17 +72,19 @@ $(function () {
         }
         
         i18next.changeLanguage(chosenLng, () => {
-          rerender()
+          rerender();
 
           // language changed message
           languageChangedCounter++
-          $('#languageChangedNotification').localize({ count: languageChangedCounter })
+          $('#languageChangedNotification').localize({ count: languageChangedCounter });
           if (languageChangedCounter === 1) {
-            $('#languageChangedNotification').show()
+            $('#languageChangedNotification').show();
           }
         })
       })
 
-      rerender()
+      rerender();
     })
-})
+};
+
+document.addEventListener("DOMContentLoaded", initI18n);
