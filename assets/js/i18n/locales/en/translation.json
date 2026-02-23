@@ -16,7 +16,8 @@
             "save_as_image":"Save as image",
             "save_as_file":"Save as file",
             "load":"Load card file",
-            "reset_all":"Reset all"
+            "reset_all":"Reset all",
+            "show_team_name" : "Show Team name"
         },
         "caracteristics":{
             "player_stats" : "Player Stats",

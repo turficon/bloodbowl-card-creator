@@ -114,11 +114,13 @@ drawTeamName = function (value) {
 }
 
 drawFooter = function (value) {
-    getContext().font = 'bold 46px brothers-regular';
-    getContext().fillStyle = 'white';
+    getContext().font = 'bold 70px brothers-regular';
+    getContext().fillStyle = 'black';
     getContext().textAlign = "center";
     getContext().textBaseline = "middle";
     getContext().rotate(-6 * Math.PI / 180);
+    writeScaled(value, { x: getCanvas().width/3 + 40, y: 1035+4 });
+    getContext().fillStyle = 'white';
     writeScaled(value, { x: getCanvas().width/3 + 40, y: 1035 });
     getContext().rotate(+6 * Math.PI / 180);
 }
@@ -270,7 +272,7 @@ onFighterImageUpload = function () {
     setModelImage(image);
     var cardData = readControls();
     render(cardData);
-    saveLatestcardData();
+    saveLatestCardData();
 }
 
 function getFighterImageUrl() {

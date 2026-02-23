@@ -16,7 +16,8 @@
             "save_as_image":"Sauvegarder comme image",
             "save_as_file":"Sauvegarder comme fichier",
             "load":"Charger une carte",
-            "reset_all":"effacer"
+            "reset_all":"effacer",
+            "show_team_name" : "Nom de l'équipe visible"
         },
         "caracteristics":{
             "player_stats" : "Statistiques du Joueur",

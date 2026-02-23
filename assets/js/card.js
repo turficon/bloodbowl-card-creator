@@ -121,7 +121,7 @@ drawCardName = function (value) {
     getContext().fillStyle = 'black';
     getContext().textAlign = "left";
     getContext().textBaseline = "middle";
-    getContext().rotate(-6 * Math.PI / 180);
+    getContext().rotate(-5 * Math.PI / 180);
 
     // Set the initial font size
     var fontSize = 70;
@@ -145,25 +145,25 @@ drawCardName = function (value) {
 
     // Set the font size and draw the text with black shadow
     getContext().font = 'italic ' + fontSize + 'px brothers-regular';
-    writeScaled(value, { x: 228 + 4, y: 200 + 4 });
+    writeScaled(value, { x: 80 + 4, y: 160 + 4 });
     
     // Set the font size and draw the text in white
     getContext().fillStyle = 'white';
-    writeScaled(value, { x: 228, y: 200 });
-    getContext().rotate(6 * Math.PI / 180);
+    writeScaled(value, { x: 80, y: 160 });
+    getContext().rotate(5 * Math.PI / 180);
 }
 
 
 drawTeamName = function (value) {
-    getContext().font = 'italic 40px brothers-regular';
+    getContext().font = 'italic 26px brothers-regular';
     getContext().fillStyle = 'black';
-    getContext().textAlign = "left";
+    getContext().textAlign = "right";
     getContext().textBaseline = "middle";
-    getContext().rotate(-6 * Math.PI / 180);
-    writeScaled(value, { x: 90 +4, y: 140+4 });
+    getContext().rotate(-5 * Math.PI / 180);
+    writeScaled(value, { x: 720 +4, y: 207+4 });
     getContext().fillStyle = 'white';
-    writeScaled(value, { x: 90, y: 140 });
-    getContext().rotate(+6 * Math.PI / 180);
+    writeScaled(value, { x: 720, y: 207 });
+    getContext().rotate(+5 * Math.PI / 180);
 }
 
 drawFooter = function (value) {
@@ -376,8 +376,13 @@ function drawCardFrame(cardData){
         getContext().drawImage(document.getElementById('border'), 0, 0, getCanvas().width, getCanvas().height);
     }
 
+    if(!document.getElementById("showTeamName").checked){
+        drawTeamName("");
+    }else{
+        drawTeamName(cardData.teamName);
+    }
+
     drawCardName(cardData.cardName);
-    drawTeamName(cardData.teamName);
     drawFooter(cardData.footer);
 
     drawGoldPrice(GP);
@@ -681,7 +686,7 @@ onFighterImageUpload = function () {
     setModelImage(image);
     var cardData = readControls();
     render(cardData);
-    saveLatestcardData();
+    saveLatestCardData();
 }
 
 function getFighterImageUrl() {
